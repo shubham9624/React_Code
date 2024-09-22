@@ -1,0 +1,31 @@
+{
+  "name": "react_code",
+  "version": "1.0.0",
+  "description": "Practice React App",
+  "scripts": {
+    "start":"parcel Namste_React.html",
+    "build": "parcel build Namste_React.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubham9624/React_Code.git"
+  },
+  "author": "Shubham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubham9624/React_Code/issues"
+  },
+  "homepage": "https://github.com/shubham9624/React_Code#readme",
+  "dependencies": {
+    "parcel": "^2.12.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  },
+  "browserlist":[
+    "last 2 versions"
+  ]
+}

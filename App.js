@@ -14,21 +14,37 @@
 // const heading =React.createElement("h1",{id:"heading"},"Hello world from React!");
 
 // console.log(heading);//return object
-const parent = React.createElement("div",
-    { id: "parent" },
-    [ 
-        React.createElement("div", { id: "child1" },
-        [
-            React.createElement("h1", {id:"heading"}, "I am h1 tag"), 
-            React.createElement("h1", {}, "I am h2 tag")
-        ]),
-        React.createElement("div", { id: "child2" },  // Changed id to "child2" to avoid duplicate IDs
-        [
-            React.createElement("h1", {}, "I am h1 tag"), 
-            React.createElement("h1", {}, "I am h2 tag")
-        ])
-    ]
-);
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// const heading = React.createElement("h1", {id:"heading"}, "This is First React 🚀");
+const jsxHeading =()=>(
+    <h1 id="heading">
+    This is First React JSX 🚀
+    </h1>
+    );
+const Title = () => (
+     <h1 className='ele'>
+    This Component 🚀
+    </h1>);
+    const x=100;
+    
+const hello =(
+    <h1 className='ele'>
+    This is First React Component 🚀
+    </h1>
+    );
+//Functional componenet
+const Headingcomponenet = () => (<div id="container">
+    < Title />
+    <h1>{x}</h1>
+    {
+        hello
+    }
+    <h1>This is Functional componenet</h1>
+</div>);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+
+root.render(<Headingcomponenet />);
+
