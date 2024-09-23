@@ -151,7 +151,10 @@ const Restrauntcards = (props) =>{
 const Body =()=>{
     return (
         <div className="Body">
-            <div className="seacrh">Search</div>
+            <div className="seacrh">
+            <input type="text" placeholder="Search restaurants..." />
+            <button type="button">Search</button>
+            </div>
             <div className='restraunt-container'>
                {
                  restraList.map((restraunt)=>(
