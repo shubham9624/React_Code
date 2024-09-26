@@ -73,3 +73,6 @@
     
     background-size: cover;
 }
+#search-btn{
+    cursor: pointer;
+}
