@@ -4,6 +4,9 @@
 .ele{
     color: blue;
 } */
+ /* #root{
+    background-color: #cccccc;
+ } */
  .header{
     display:flex;
     justify-content: space-between;
@@ -28,7 +31,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 30px;
+    padding: 20px;
 }
 
 .search input {
@@ -40,6 +44,15 @@
     font-size: 16px; /* Bigger text */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a polished look */
     transition: all 0.3s ease; /* Smooth transition for hover/focus */
+}
+.search-btn{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .search input:focus {
@@ -55,7 +68,7 @@
     
 }
 .res-cards{
-    width: 200px;
+    width: 250px;
     padding: 25px;
     margin: 8px;
     background-color: rgb(228, 173, 173);
@@ -73,6 +86,42 @@
     
     background-size: cover;
 }
-#search-btn{
+#filter-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    padding: 20px;
     cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.shimmer-card{
+    width: 200px;
+    height: 200px;
+    margin: 25px;
+    background: linear-gradient(to right, #f1ecec, #cccccc);
+    background-size: 400% 400%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Login{
+    padding: 0  20px;
+    height: 30px;
+    cursor: pointer;
+}
+#error-image{
+    margin-left: 700px; 
+}
+.error{
+    background-color: #e6d6d6;
 }

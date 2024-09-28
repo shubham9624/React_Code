@@ -41,5 +41,13 @@
  */
 
  # React hooks
- - Normal jS function
+ - Normal jS utility function
+ - useState() -  superpowerful state cariable in react
+ - useEffect()
+
+ # 2 types of ROuting
+ - Client side routing (here wo dont call on network, all page in application at the time of loading)
+ - Server side routing (make network calls and goest to network and fetching a new page)
+
+
  
