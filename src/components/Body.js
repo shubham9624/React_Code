@@ -1,60 +1,64 @@
 import Restrauntcards from "./RestrauntsCards";
-import {CDN_URL} from "../utils/constants";
+import { FOOD_DELIVERY_API, NoInternet_IMAGE_URL, CDN_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
-import { FOOD_DELIVERY_API } from "../utils/constants";
+import useRestrauntDetails from "../utils/useRestrauntDetails";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body =()=>{
     // const arr = useState(restraList);
     // const tempRestra = arr[0];
     // const setListtempRestra = arr[1];// These are same
-    const [tempRestra, setListtempRestra] = useState([]);// we are only destructuring here
-    const [filterRestra, setfilterRestra] = useState([]);// we are destructuring
-
+    const tempRestra = useRestrauntDetails();
+    const [filterRestra, setfilterRestra] = useState([]);
     const [searchText, setSearchText] =useState("");
     //console.log("body");
-
     useEffect(()=>{
-        fetchdata();
-    },[]);
-    const fetchdata = async ()=>{
+        fetchData();
+     },[]);
+
+     const fetchData = async ()=>{
+
         const data = await fetch(FOOD_DELIVERY_API);
         const json = await data.json();
-        //console.log(json);
-        //Optional Chainning
-        setListtempRestra(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setfilterRestra(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+     };
+
+       const onlineStatus = useOnlineStatus();
+       if(!onlineStatus)
+       {
+          return (
+            <h1>You ae offline Swithch On the internet</h1>
+          )
        }
+        if(tempRestra === null){
+            return <Shimmer/>
+        }
 
-        // if(tempRestra.length === 0){
-        //     return <Shimmer/>
-        // }
-
-    return tempRestra.length === 0 ? <Shimmer/> : (
+    return (
         <div className="Body">
-            <div className="seacrh">
-            <input type="text" placeholder="Search restaurants..." value ={searchText} onChange={(text)=>{
+            <div className="seacrh m-4 p-4">
+            <input type="text" className="border border-solid border-black" placeholder="Search restaurants..." value ={searchText} onChange={(text)=>{
                 setSearchText(text.target.value);
 
             }}/>
-            <button type="button" className="search-btn" onClick={()=>{
+            <button type="button" className="px-4 py-2 bg-green-300 m-4 rounded-lg" onClick={()=>{
 
                 const filtered = tempRestra.filter((restra) => 
                     restra.info.name.toLowerCase().includes(searchText.toLowerCase())
                 );
                     setfilterRestra(filtered);
             }}>Search</button>
-            </div>
-            <div className='filter'>
-            <button id="filter-btn" type="button" onClick={()=>{
+
+            <button className="px-4 py-2 m-2 bg-gray-300 rounded-lg" type="button" onClick={()=>{
                 
                 const filtered=tempRestra.filter((restra) => restra.info.avgRating >= 4);
                 setfilterRestra(filtered);
                 //console.log(tempRestra);
             }}>Filter</button>
             </div>
-            <div className='restraunt-container'>
+            <div className='flex flex-wrap'>
                {
                  filterRestra.map((restraunt)=>(
                      <Link to={'restraunts/'+restraunt.info.id} key={restraunt.info.id} >
