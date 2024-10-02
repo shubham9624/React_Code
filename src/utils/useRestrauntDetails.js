@@ -14,7 +14,7 @@ const useRestrauntDetails = ()=>{
         const json = await data.json();
         setRestraDetails(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
      };
-
+   //   console.log(restraDetails);
     return restraDetails;
 
 }

@@ -1,4 +1,4 @@
-import Restrauntcards from "./RestrauntsCards";
+import Restrauntcards , { withPromotedLabel }from "./RestrauntsCards";
 import { FOOD_DELIVERY_API, NoInternet_IMAGE_URL, CDN_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./shimmer";
@@ -13,6 +13,10 @@ const Body =()=>{
     const tempRestra = useRestrauntDetails();
     const [filterRestra, setfilterRestra] = useState([]);
     const [searchText, setSearchText] =useState("");
+
+    //Higher Order Components
+    const RestrauntWithPromoted =withPromotedLabel(Restrauntcards);
+    let promoted=false;
     //console.log("body");
     useEffect(()=>{
         fetchData();
@@ -62,17 +66,27 @@ const Body =()=>{
                {
                  filterRestra.map((restraunt)=>(
                      <Link to={'restraunts/'+restraunt.info.id} key={restraunt.info.id} >
-                     <Restrauntcards 
-                     restra={{
-                        resName : restraunt.info.name,
-                        cusine : restraunt.info.cuisines,
-                        rating : restraunt.info.avgRating,
-                        deliveryTime : `${restraunt.info.sla.deliveryTime} minutes`,
-                        costFortwo : restraunt.info.costForTwo,
-                        image : `${CDN_URL}${restraunt.info.cloudinaryImageId}`
-
-                     }}
-                     />
+                     {
+                       promoted? <RestrauntWithPromoted restra={{
+                            resName : restraunt.info.name,
+                            cusine : restraunt.info.cuisines,
+                            rating : restraunt.info.avgRating,
+                            deliveryTime : `${restraunt.info.sla.deliveryTime} minutes`,
+                            costFortwo : restraunt.info.costForTwo,
+                            image : `${CDN_URL}${restraunt.info.cloudinaryImageId}`
+    
+                         }}/> : <Restrauntcards 
+                        restra={{
+                           resName : restraunt.info.name,
+                           cusine : restraunt.info.cuisines,
+                           rating : restraunt.info.avgRating,
+                           deliveryTime : `${restraunt.info.sla.deliveryTime} minutes`,
+                           costFortwo : restraunt.info.costForTwo,
+                           image : `${CDN_URL}${restraunt.info.cloudinaryImageId}`
+   
+                        }}
+                        />
+                     }
                      </Link>
                  ))
  

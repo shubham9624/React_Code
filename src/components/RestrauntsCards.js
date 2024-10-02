@@ -12,4 +12,18 @@ const Restrauntcards = (props) =>{
      )
  };
 
+ //Higher Order Componenets
+ export const withPromotedLabel = (Restrauntcards)=>{
+
+    return (props)=>{
+
+        return (
+            <div>
+                <label className="bg-black bg-opacity-45 text-white m-2 p-2 rounded-lg shadow-lg">Prmoted</label>
+                <Restrauntcards {...props}/>
+            </div>
+        )
+    }
+ }
+
  export default Restrauntcards;

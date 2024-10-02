@@ -27,24 +27,24 @@ import useOnlineStatus from "../utils/useOnlineStatus";
             </div>
             <div 
                 className='flex items-center '>
-                <ul className="flex p-4 m-4">
-                    <li className="px-4">
+                <ul className="flex p-12 m-4 space-x-2">
+                    <li className="px-3 font-semibold  text-gray-700">
                         {onlineStatus ? "Online ✅":"Offline ❌"}
                     </li>
-                    <li  className="px-4">
+                    <li  className=" font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700 hover:text-red-500">
                         <Link to="/">Home</Link>
                     </li>
-                    <li  className="px-4">
+                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
                         <Link to="/about">About Us</Link>
                         </li>
-                    <li  className="px-4">
+                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
                         <Link to="/contact">Contact Us</Link>
                     </li>
-                    <li  className="px-4">
+                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
                         <Link to="/Grocery">Grocery</Link>
                     </li>
-                    <li  className="px-4">Cart</li>
-                    <li  className="px-4">
+                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">Cart</li>
+                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
                         <button className="Login" onClick={()=>{
                            tempBtn === 'Log In'?setBtn('Log Out'):setBtn('Log In');
                     }
