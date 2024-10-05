@@ -1,5 +1,5 @@
 
-import React, {lazy,Suspense} from 'react';
+import React, {lazy,Suspense, useEffect, useState} from 'react';
 import ReactDom from 'react-dom/client';
 import Body from './components/Body.js';
 import Header from './components/tempHeader.js';
@@ -9,14 +9,36 @@ import Contact from './components/contact.js';
 import Error from './components/error.js';
 import RestrauntsMenu from './components/restrauntMenu.js';
 import { lazy } from 'react';
+import UserContext from './utils/userContext.js';
+//provide to store to react
+import {Provider} from 'react-redux';
+import appStore from './utils/appStore.js';
+import Cart from './components/cart.js';
 
+//chunking
 const Grocery = lazy(() => import('./components/grocery.js'));
 
 const AppLayout = ()=>{
-    return <div className="app">
-            <Header/>
-            <Outlet/>
-    </div>
+
+    const[userInfo,setUserInfo] = useState();
+
+    useEffect(() =>{
+        const data ={
+            name: "Sam",
+        }
+        setUserInfo(data.name);
+    },[]);
+    return (
+       <Provider store={appStore}>
+         <UserContext.Provider value={{loggedInUser : userInfo , setUserInfo}}>
+            <div className="app">
+                    <Header/>
+                    <Outlet/>
+            </div>
+        </UserContext.Provider>
+       </Provider>
+    )
+     
 }
 const appRouter = createBrowserRouter([
     {
@@ -44,6 +66,10 @@ const appRouter = createBrowserRouter([
                 element:<RestrauntsMenu/>
 
             },
+            {
+                path: '/cart',
+                element:<Cart/>
+            }
         ],
         errorElement:<Error/>
     }

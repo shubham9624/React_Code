@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
+import { useSelector } from "react-redux";
  const Header = ()=>{
 
     const [tempBtn, setBtn] =useState("Log In");
@@ -16,8 +18,17 @@ import useOnlineStatus from "../utils/useOnlineStatus";
     },[tempBtn]);
 
     const onlineStatus = useOnlineStatus();
+    const {loggedInUser} = useContext(UserContext);
+
+    //Selector For subcscribe to store for redux  using selector
+    const cartItem = useSelector((store)=> store.cart.items);
+    console.log(cartItem);
+
+    const handleClick = ()=>{
+        tempBtn === 'Log In'?setBtn('Log Out'):setBtn('Log In');
+    }
     return (
-        <div className='flex justify-between bg-pink-100 shadow-lg'>
+        <div className='flex justify-between bg-pink-100 shadow-lg sm-'>
             <div className='logo-container'>
                 <Link to="/">
                 <img 
@@ -43,14 +54,15 @@ import useOnlineStatus from "../utils/useOnlineStatus";
                     <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
                         <Link to="/Grocery">Grocery</Link>
                     </li>
-                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">Cart</li>
-                    <li   className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
-                        <button className="Login" onClick={()=>{
-                           tempBtn === 'Log In'?setBtn('Log Out'):setBtn('Log In');
-                    }
-                    }>{tempBtn}
+                    <Link to='/cart'>
+                    <li className="font-semibold px-4 shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">Cart - {cartItem.length}</li>
+                    </Link>
+
+                    <li   className="font-semibold px-4  shadow-lg rounded-xl bg-yellow-500 text-gray-700  hover:text-red-500">
+                        <button className="Login" onClick={handleClick}>{tempBtn}
                     </button>
                     </li>
+                    <li className="px-4 font-bold text-green-600">{loggedInUser}</li>
                 </ul>
             </div>
         </div>  

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import UserContext from '../utils/userContext';
 class Userclass extends React.Component {
     //for props
     constructor() {
@@ -52,8 +52,13 @@ class Userclass extends React.Component {
                     }
             );
             }}>Change State var</button> */}
+            {/* Rect context in class based component */}
             <img className='avtar-image'src={avatar_url}></img>
-            <h2>Name : {name}</h2>
+            <UserContext.Consumer>
+                {(data) => (
+                    <h2 className='font-bold'>Name: {data.loggedInUser}</h2>
+                )}
+            </UserContext.Consumer>
             <h3>Location :- {location}</h3>
             <h3>Contact :- 8871924356</h3>
         </div>

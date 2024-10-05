@@ -1,11 +1,17 @@
+import { STAR_EMOJI } from "../utils/constants";
 const Restrauntcards = (props) =>{
-    const { resName, cusine, rating, deliveryTime , costFortwo, image} = props?.restra; 
+    let { resName, cusine, rating, deliveryTime , costFortwo, image} = props?.restra; 
+    
+    cusine=cusine.length<3?cusine.join(",") : cusine.splice(0,3).join(",")+'...';
      return (
-         <div className=' flex-wrap m-4 p-4 w-[290px] shadow-lg bg-gray-200 rounded-2xl transition-transform transform hover:scale-[1.1] hover:bg-green-400'>
-             <img className="rounded-lg" alt='food logo' src={image} ></img>
-             <h3 className="font-bold py-4">{resName}</h3>
-             <h4>{cusine.join(',')}</h4>
-             <h4 className="text-green-900 font-bold">⭐{rating}</h4>
+         <div className=' m-2 p-2 w-[290px] min-h-[400px] rounded-2xl transition-transform transform hover:scale-[1.1]'>
+             <img className="ml-3 rounded-lg h-[170px] w-[250px] object-cover shadow-xl shadow-gray-300" alt='food logo' src={image} ></img>
+             <h3 className="font-bold py-2 truncate">{resName}</h3>
+             <h4 className="truncate mb-3">{cusine}</h4>
+             <span className="flex items-center">
+             <img className="w-4 h-4" src={STAR_EMOJI} alt="Star" />
+             <h4 className="ml-2 font-bold ">{rating}</h4>
+            </span>
              <h4>{costFortwo}</h4>
              <h4 className=" font-bold">{deliveryTime}</h4>    
          </div>

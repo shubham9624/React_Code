@@ -50,4 +50,11 @@
  - Server side routing (make network calls and goest to network and fetching a new page)
 
 
- 
+ # Redux Tool Kit
+ - Install libraries @reduxjs/toolkit and react-redux 
+ - Build our store
+ - Build our Slice
+ - Connect our store to our application
+ - Slice (cart slice)
+ - dispatch  & action
+ - Read the data by slector

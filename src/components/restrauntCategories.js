@@ -17,9 +17,10 @@ const RestrauntCategories = (props)=>{
                 <span className="font-bold text-lg">{title} ({itemCards.length})</span>
                 <span>👇</span>
                 </div>
+                {/* Accordian Body */}
                 {showSingle && showItems && <ItemList items={itemCards} />}
             </div>
-            {/* Accordian Body */}
+            
             
         </div>
     );
